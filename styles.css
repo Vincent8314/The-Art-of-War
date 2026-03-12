@@ -1,0 +1,344 @@
+
+/* ============================================================
+   HOW TO WRITE YOUR BOOK
+   ============================================================
+   1. Set your title and author in the <book> tag below
+   2. Write chapters inside <chapter title="..."> tags
+   3. Each paragraph = one <p>Your text.</p>
+   4. Add as many chapters as you want
+   5. Refresh browser — everything is automatic
+   ============================================================ */
+
+  :root {
+    --page-w: 650px;
+    --page-h: 920px;
+    --pad-top: 90px;
+    --pad-side: 88px;
+    --pad-bottom: 70px;
+    --footer-h: 56px;
+    --bg: #e2dcd3;
+    --page: #faf7f2;
+    --ink: #1c1814;
+    --ink-soft: #6b6055;
+    --accent: #7a3b1e;
+    --rule: #c9bfae;
+    --sh-a: rgba(20,16,10,0.13);
+    --sh-b: rgba(20,16,10,0.05);
+    --font-body: 'EB Garamond', Georgia, serif;
+    --font-title: 'Cinzel', serif;
+    --font-sub: 'Cormorant Garamond', serif;
+    --body-size: 17.5px;
+    --lh: 1.9;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    font-family: var(--font-body);
+    color: var(--ink);
+  }
+
+  @media screen {
+    body { padding: 60px 0 120px; }
+
+    /* ── TABLE OF CONTENTS ── */
+    #toc {
+      width: var(--page-w);
+      min-height: 400px;
+      margin: 0 auto 48px;
+      background: var(--page);
+      box-shadow: 0 2px 6px var(--sh-a), 0 16px 56px var(--sh-b);
+      padding: 80px var(--pad-side) 72px;
+      position: relative;
+    }
+    #toc::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0; width: 7px;
+      background: linear-gradient(to right, var(--sh-a), transparent);
+    }
+
+    .toc-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .toc-book-title {
+      font-family: var(--font-title);
+      font-size: 30px;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .toc-author {
+      font-family: var(--font-sub);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--ink-soft);
+      margin-bottom: 52px;
+    }
+    .toc-divider {
+      width: 44px; height: 1px;
+      background: var(--accent);
+      opacity: 0.45;
+      margin-bottom: 44px;
+    }
+    .toc-list { list-style: none; }
+    .toc-row {
+      display: flex;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .toc-row:hover { color: var(--accent); }
+    .toc-ch-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--accent);
+      min-width: 56px;
+      opacity: 0.65;
+    }
+    .toc-ch-name {
+      font-size: 15px;
+      flex: 1;
+    }
+    .toc-dots {
+      flex: 1;
+      border-bottom: 1px dotted var(--rule);
+      margin: 0 14px;
+      position: relative;
+      top: -3px;
+      min-width: 20px;
+    }
+    .toc-pg-num {
+      font-family: var(--font-title);
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .toc-row-intro .toc-intro-name {
+      font-style: italic;
+      font-family: var(--font-sub);
+      font-size: 16px;
+    }
+    .toc-intro-label {
+      min-width: 56px;
+    }
+
+    /* ── PAGES ── */
+    .page {
+      width: var(--page-w);
+      height: var(--page-h);
+      background: var(--page);
+      margin: 0 auto 28px;
+      box-shadow: 0 2px 6px var(--sh-a), 0 16px 56px var(--sh-b);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .page::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0; width: 52px;
+      background: linear-gradient(to right, var(--sh-a), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Export bar */
+    #export-bar {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 10px;
+      z-index: 999;
+    }
+    .ex-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border: none;
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 13px 20px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      background: rgba(250,247,242,0.92);
+      color: var(--ink);
+      box-shadow: 0 2px 12px var(--sh-a);
+      backdrop-filter: blur(6px);
+    }
+    .ex-btn.primary {
+      background: var(--accent);
+      color: #faf7f2;
+      box-shadow: 0 4px 20px rgba(122,59,30,0.3);
+    }
+    .ex-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .ex-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* PDF progress overlay */
+    #pdf-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28,24,20,0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      backdrop-filter: blur(4px);
+    }
+    #pdf-overlay.show { display: flex; }
+    .pdf-overlay-text {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #faf7f2;
+    }
+    .pdf-progress-bar {
+      width: 220px; height: 2px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 1px; overflow: hidden;
+    }
+    .pdf-progress-fill {
+      height: 100%; background: var(--accent);
+      width: 0%; transition: width 0.2s; border-radius: 1px;
+    }
+  }
+
+  /* ── PAGE INNER ── */
+  .page-inner {
+    flex: 1;
+    padding: var(--pad-top) var(--pad-side) 0;
+    font-size: var(--body-size);
+    line-height: var(--lh);
+    overflow: hidden;
+  }
+
+  /* ── CHAPTER TITLE PAGE ── */
+  .ch-title-page .page-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 80px;
+  }
+  .ch-ornament {
+    font-family: var(--font-sub);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 60px;
+    opacity: 0.75;
+  }
+  .ch-num-label {
+    font-family: var(--font-title);
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .ch-name {
+    font-family: var(--font-title);
+    font-size: 29px;
+    color: var(--ink);
+    line-height: 1.28;
+    max-width: 360px;
+    margin-bottom: 60px;
+  }
+  .ch-rule {
+    width: 52px; height: 1px;
+    background: var(--accent);
+    opacity: 0.38;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    height: var(--footer-h);
+    padding: 0 var(--pad-side);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 22px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .page-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--pad-side);
+    right: var(--pad-side);
+    height: 1px;
+    background: var(--rule);
+    opacity: 0.55;
+  }
+  .ft-chapter {
+    font-family: var(--font-title);
+    font-size: 7.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.55;
+  }
+  .ft-num {
+    font-family: var(--font-title);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  /* ── TEXT PARAGRAPHS ── */
+  .text-block p {
+    font-size: var(--body-size);
+    line-height: var(--lh);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    text-indent: 1.6em;
+    margin: 0;
+  }
+  .text-block p:first-child { text-indent: 0; }
+
+  /* Drop cap: first letter of first paragraph of each chapter */
+  .drop-cap::first-letter {
+    font-family: var(--font-title);
+    font-size: 4.1em;
+    float: left;
+    line-height: 0.78;
+    margin-right: 0.07em;
+    margin-top: 0.08em;
+    color: var(--accent);
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; padding: 0; }
+    #print-btn, #export-bar, #pdf-overlay, book { display: none !important; }
+    .page {
+      width: 100%;
+      height: 100vh;
+      box-shadow: none;
+      margin: 0;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page::before { display: none; }
+    #toc { box-shadow: none; page-break-after: always; break-after: page; }
+  }

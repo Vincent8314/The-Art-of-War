@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Book</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!--
+╔══════════════════════════════════════════════╗
+║           WRITE YOUR BOOK BELOW              ║
+║                                              ║
+║  • Edit title="..." and author="..."         ║
+║  • Optional: <introduction title="...">      ║
+║  • Add chapters: <chapter title="...">       ║
+║  • Each paragraph: <p>Your text.</p>         ║
+║  • Refresh browser → everything is done      ║
+╚══════════════════════════════════════════════╝
+-->
+
+  <book title="The Art of War" author="Sun Tzu">
+
+    <!-- OPTIONAL: Add an introduction (appears before chapters, no number in TOC) -->
+    <introduction title="Introduction">
+      <p>
+        The Art of War is an ancient Chinese military treatise dating from the Late Spring and Autumn Period (roughly
+        5th century BC). The work, which is attributed to the ancient Chinese military strategist Sun Tzu ("Master Sun",
+        also spelled Sunzi), is composed of 13 chapters. Each one is devoted to an aspect of warfare and how it applies
+        to military strategy and tactics. For almost 1,500 years it was the lead text in an anthology that would be
+        formalised as the Seven Military Classics by Emperor Shenzong of Song in 1080. The Art of War remains the most
+        influential strategy text in East Asian warfare and has influenced both Eastern and Western military thinking,
+        business tactics, legal strategy, lifestyles and beyond.
+        <br><br>
+        The book contained a detailed explanation and analysis of the Chinese military, from weapons and strategy to
+        rank and discipline. Sun also stressed the importance of intelligence operatives and espionage to the war
+        effort. Because Sun has long been considered to be one of history's finest military tacticians and analysts, his
+        teachings and strategies formed the basis of advanced military training for millennia to come.
+      </p>
+    </introduction>
+
+    <chapter title="Laying Plans">
+      <p>
+        1. Sun Tzu said: The art of war is of vital importance
+        to the State.
+        <br><br>
+        2. Its a matter of life and death, a road either
+        to safety or to ruin. Hence it is a subject of inquiry
+        which can on no account be negleted.
+        <br><br>
+        3. The art of war, then, is governed by five constant factors, to be taken into account in one's deliberations,
+        when seeking to determine the conditions obtaining in the field.
+        <br><br>
+        4. These are: (1) The Moral Law; (2) Heaven; (3) Earth; (4) The commander; (5) Method and discipline.
+        <br><br>
+        5,6. The Moral Law causes the people to be in complete accord with their ruler, so that they will follow him
+        regardless of their lives, undismayed by any danger.
+        <br><br>
+        7. Heaven signifies night and day, cold and heat, times and seasons. 
+        <br><br>
+        8. Earth comprises distances, great and small; danger and security; open ground and narrow passes; the chances of life and death.
+        <br><br>
+        9. The Commander stands for the virtues of wisdom, sincerity, benevolence, courage and strictness.
+      </p>
+      <p>
+        10. By method and discipline are to be understood the marshaling of the army in its proper subdivisions, the graduations of rank among the officers, the maintenance of roads by which supplies may reach the army, and the control of military expenditure.
+      </p>
+    </chapter>
+    <chapter title="Waging War">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Attack by Stratagem">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Tactical Dispositions">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Energy">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Weak Points and Strong">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Maneuvering">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Variation in Tactics">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="The Army on the March">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="Terrain">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="The nine Situations">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="The Attack by Fire">
+      <p>
+
+      </p>
+    </chapter>
+    <chapter title="The Use of Spies">
+      <p>
+
+      </p>
+    </chapter>
+
+    <!--
+  ADD MORE CHAPTERS LIKE THIS:
+
+  <chapter title="Your Next Chapter">
+    <p>Write here...</p>
+    <p>And here...</p>
+  </chapter>
+  -->
+
+  </book>
+
+  <!-- PDF progress overlay -->
+  <div id="pdf-overlay">
+    <div class="pdf-overlay-text" id="pdf-overlay-msg">Generating PDF…</div>
+    <div class="pdf-progress-bar">
+      <div class="pdf-progress-fill" id="pdf-progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- Export toolbar -->
+  <div id="export-bar">
+    <button class="ex-btn" id="print-btn" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 6 2 18 2 18 9" />
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+        <rect x="6" y="14" width="12" height="8" />
+      </svg>
+      Print
+    </button>
+    <button class="ex-btn primary" id="pdf-btn" onclick="downloadPDF()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+      <span id="pdf-btn-label">Download PDF</span>
+    </button>
+  </div>
+
+  <!-- CDNs: html2canvas + jsPDF (no install, no account) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="index.js">
+
+  </script>
+</body>
+
+</html>
